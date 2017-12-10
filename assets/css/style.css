@@ -1,24 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Francois+One');
 body {
   background-color: black;
   background: url("../images/background3.gif");
   margin-top: auto;
   background-size: cover;
-  background-repeat:repeat;
+  background-repeat: repeat;
   background-image: radial-gradient();
 }
 
 h1 {
-  color: red;
-  font-size: 40px;
+  padding-top: 5px;
+  color: white;
+  font-size: 35px;
+  text-align: center;
+  font-family: 'Francois One', sans-serif;
+  padding-bottom: 5px;
 }
-.container{
-  width:100%;
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+th{
+  padding-bottom: 2px;
+}
+
+
+.formating{
+border-radius: 10px;
+}
+
+.container {
+  width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  clear:both;
+  clear: both;
 }
-#masterhead{
 
+#masterhead {
   border: 5px;
   border-style: solid;
   border-color: yellow;
@@ -27,13 +49,26 @@ h1 {
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 620px;
+  width: 600px;
   height: auto;
   min-height: 176px;
   background: url("../images/star-wars-logo.jpg");
-  background-size:cover;
+  background-size: cover;
 }
 
-.formating{
+#selectCharacter {
+  border: 5px;
+  border-style: solid;
+  border-color: yellow;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 780px;
+  height: 240px;
+}
+
+.formating {
   width: 100%;
 }
