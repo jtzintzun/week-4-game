@@ -17,6 +17,15 @@ h1 {
   padding-bottom: 5px;
 }
 
+h2 {
+  padding-top: 5px;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  font-family: 'Francois One', sans-serif;
+
+}
+
 table {
   margin-left: auto;
   margin-right: auto;
@@ -25,11 +34,16 @@ table {
   font-size: 15px;
 }
 th{
-  padding-bottom: 2px;
+
+
 }
 
 
 .formating{
+border-radius: 10px;
+margin-left: 10px;
+}
+.formatingEnemies{
 border-radius: 10px;
 }
 
@@ -69,6 +83,73 @@ border-radius: 10px;
   height: 240px;
 }
 
-.formating {
-  width: 100%;
+#enemiesToAttack{
+  border: 5px;
+  border-style: solid;
+  border-color: yellow;
+  border-radius: 10px;
+  margin-left: 50px;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 160px;
+  height: auto;
+  float: left;
+}
+
+#centerSection{
+  border: 5px;
+  border-style: solid;
+  border-color: yellow;
+  border-radius: 10px;
+  margin-left: 110px;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 780px;
+  height: auto;
+  float: left;
+}
+
+
+#fightSection{
+  border: 1px;
+  border-radius: 10px;
+  width: 780px;
+  height: 400px;
+  float: left;
+  background: url("../images/players.jpg");
+  background-size: cover;
+}
+
+#panelSection{
+
+  border-radius: 10px;
+  width: 780px;
+  height: 200px;
+  float: left;
+  background: url("../images/controlPanel.jpg");
+  background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+#enemiesDefeated{
+    border: 5px;
+    border-style: solid;
+    border-color: yellow;
+    border-radius: 10px;
+    margin-right:50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 160px;
+    height: auto;
+    float: right;
 }
