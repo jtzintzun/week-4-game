@@ -7,6 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="assets/javascript/game.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
   <title>Game - Star Wars RPG</title>
 </head>
 
@@ -21,48 +24,48 @@
       <thead>
         <tr>
           <th>
-            <h4>character1</h4>
+            <h4 id="selectCharacter1Title">character1</h4>
           </th>
           <th>
-            <h4>character2</h4>
+            <h4 id="selectCharacter2Title">character2</h4>
           </th>
           <th>
-            <h4>character3</h4>
+            <h4 id="selectCharacter3Title">character3</h4>
           </th>
           <th>
-            <h4>character4</h4>
+            <h4 id="selectCharacter4Title">character4</h4>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <img src="assets/images/luke0small.jpg" class="formating"/>
+            <img src="assets/images/unknown.png" id="selectCharacter1Image" class="formating" />
           </td>
           <td>
-            <img src="assets//images/yodaSmall0.jpg" class="formating" />
+            <img src="assets//images/unknown.png" id="selectCharacter2Image" class="formating" />
           </td>
           <td>
-            <img src="assets/images/palpatineSmall0.jpg" class="formating"/>
+            <img src="assets/images/unknown.png" id="selectCharacter3Image" class="formating"/>
           </td>
           <td>
-            <img src="assets/images/darthVaderSmall0.jpg" class="formating"/>
+            <img src="assets/images/unknown.png" id="selectCharacter4Image" class="formating"/>
           </td>
         </tr>
       </tbody>
       <tfood>
         <tr>
           <td>
-            <h4>footer1</h4>
+            <h4 id="selectCharacter1Footer">footer1</h4>
           </td>
           <td>
-            <h4>footer2</h4>
+            <h4 id="selectCharacter2Footer">footer2</h4>
           </td>
           <td>
-          <h4>footer3</h4>
+          <h4 id="selectCharacter3Footer">footer3</h4>
           </td>
           <td>
-          <h4>footer4</h4>
+          <h4 id="selectCharacter4Footer">footer4</h4>
           </td>
         </tr>
       </tfood>
@@ -77,49 +80,49 @@
     <table>
       <tr>
         <th>
-          <h4>character1</h4>
+          <h4 id="attackCharacter1Title">character1</h4>
         </th>
       </tr>
       <tr>
         <td>
-          <img src="assets/images/darthVaderSmall0.jpg" class="formatingEnemies"/>
+          <img src="assets/images/unknown.png" id="attackCharacter1Image"class="formatingEnemies"/>
         </td>
       </tr>
       <tr>
         <td>
-        <h4>footer1</h4>
+        <h4 id="attackCharacter1Footer">footer1</h4>
         </td>
       </tr>
 
       <tr>
         <th>
-          <h4>character2</h4>
+          <h4 id="attackCharacter2Title">character2</h4>
         </th>
       </tr>
       <tr>
         <td>
-          <img src="assets/images/yodaSmall0.jpg" class="formatingEnemies"/>
+          <img src="assets/images/unknown.png" id="attackCharacter2Image"class="formatingEnemies"/>
         </td>
       </tr>
       <tr>
         <td>
-        <h4>footer2</h4>
+        <h4 id="attackCharacter2Footer">footer2</h4>
         </td>
       </tr>
 
       <tr>
         <th>
-          <h4>character3</h4>
+          <h4 id="attackCharacter3Title">character3</h4>
         </th>
       </tr>
       <tr>
         <td>
-          <img src="assets/images/palpatineSmall0.jpg" class="formatingEnemies"/>
+          <img src="assets/images/unknown.png" id="attackCharacter3Image"class="formatingEnemies"/>
         </td>
       </tr>
       <tr>
         <td>
-        <h4>footer3</h4>
+        <h4 id="attackCharacter3Footer">footer3</h4>
         </td>
       </tr>
   </table>
@@ -137,8 +140,10 @@
     <div id="panelSection">
       <h3 class="attackResultsYou">You attacked Character1 for 24 damage</h3>
       <h3 class="attackResultsEnemie">Character1 attacked you back for 25 damage</h3>
-      <input type="image" src="assets/images/attack2.png" class="attackButton"/>
-      <input type="image" src="assets/images/restart.png" class="restartButton"/>
+      <button id="attack"; class="button attackButton" value=true> <p>ATTACK</p>
+      <button id="restart"; class="button restartButton" value=true> <p>RESTART</p>
+
+      </button>
     </div>
 
   </div>
@@ -197,6 +202,106 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+var action;
+
+    $('button').click(function (e) {
+
+    var action = $(this).val();
+    console.log("this is action1 value: " + action);
+
+    });
+  });
+</script>
+
+
+<script>
+
+// creating the objects
+function character(name,healtPoints,attackPower,counterAttackPower,brief,image100,image75,image50,image25,image0,imageGif){
+  this.name=name;
+  this.healtPoints= healtPoints;
+  this.attackPower=attackPower;
+  this.counterAttackPower=counterAttackPower;
+  this.brief=brief;
+  this.image100=image100;
+  this.image75=image75;
+  this.image50=image50;
+  this.image25=image25;
+  this.image0=image0;
+  this.imageGif=imageGif;
+}
+
+var character1 = new character("Luke Skywalker",100,25,25,"Human male Jedi Master","luke100","luke75","luke50","luke25","luke0","lukeGif" )
+var character2 = new character("Yoda",125,50,50,"Mysterious species male Jedi Master","yoda100","yoda75","yoda50","yoda25","yoda00","yodaGif")
+var character3 = new character("Palpatine",150,75,75,"Human male Dark Lord of the Sith","palpatine100","palpatine75","palpatine50","palpatine25","palpatine0","palpatineGif")
+var character4 = new character("Darth Vader",125,50,50,"Human male Sith Lord","darthVader100","darthVader75","darthVader50","darthVader25","darthVader0")
+
+// ends creating objects
+
+//Setting the characters to select
+
+function selectCharacter(){
+//  var characters = [characterOne,characterTwo];
+//  i=1
+//document.getElementById("selectCharacter"+i+"Title").innerHTML = characters[i].name;
+//document.getElementById("selectCharacter"+i+"Image").src = "assets/images/"+ characters[i].image100 +".jpg";
+//document.getElementById("selectCharacter"+i+"Footer").innerHTML = "HP: " + characters[i].healtPoints;
+
+document.getElementById("selectCharacter1Title").innerHTML = character1.name;
+document.getElementById("selectCharacter1Image").src = "assets/images/"+ character1.image100 +".jpg";
+document.getElementById("selectCharacter1Footer").innerHTML = "HP: " + character1.healtPoints;
+
+document.getElementById("selectCharacter2Title").innerHTML = character2.name;
+document.getElementById("selectCharacter2Image").src = "assets/images/"+ character2.image100 +".jpg";
+document.getElementById("selectCharacter2Footer").innerHTML = "HP: " + character2.healtPoints;
+
+document.getElementById("selectCharacter3Title").innerHTML = character3.name;
+document.getElementById("selectCharacter3Image").src = "assets/images/"+ character3.image100 +".jpg";
+document.getElementById("selectCharacter3Footer").innerHTML = "HP: " + character3.healtPoints;
+
+document.getElementById("selectCharacter4Title").innerHTML = character4.name;
+document.getElementById("selectCharacter4Image").src = "assets/images/"+ character4.image100 +".jpg";
+document.getElementById("selectCharacter4Footer").innerHTML = "HP: " + character4.healtPoints;
+
+}
+selectCharacter()
+
+function attackCharacter(){
+  var attacCharactersNames = [character1.name,character2.name,character3.name,character4.name]
+  var attacCharactersImages = [character1.image100,character2.image100,character3.image100,character4.image100]
+  var attacCharactersHP = [character1.healtPoints,character2.healtPoints,character3.healtPoints,character4.healtPoints]
+
+//for (var i = 0; i < attacCharactersNames.length; i++) {
+
+//  document.getElementById("attackCharacter1Title").innerHTML = attacCharactersNames[i];
+//  document.getElementById("attackCharacter1Image").src = "assets/images/"+ attacCharactersImages[i] +".jpg";
+//  document.getElementById("attackCharacter1Footer").innerHTML = "HP: " + attacCharactersHP[i];
+
+  document.getElementById("attackCharacter1Title").innerHTML = character1.name;
+  document.getElementById("attackCharacter1Image").src = "assets/images/"+ character1.image100 +".jpg";
+  document.getElementById("attackCharacter1Footer").innerHTML = "HP: " + character1.healtPoints;
+
+  document.getElementById("attackCharacter2Title").innerHTML = character2.name;
+  document.getElementById("attackCharacter2Image").src = "assets/images/"+ character2.image100 +".jpg";
+  document.getElementById("attackCharacter2Footer").innerHTML = "HP: " + character2.healtPoints;
+
+  document.getElementById("attackCharacter3Title").innerHTML = character3.name;
+  document.getElementById("attackCharacter3Image").src = "assets/images/"+ character3.image100 +".jpg";
+  document.getElementById("attackCharacter3Footer").innerHTML = "HP: " + character3.healtPoints;
+
+//  document.getElementById("attackCharacter1Title").innerHTML = "";
+//  document.getElementById("attackCharacter1Image").src = "";
+//  document.getElementById("attackCharacter1Footer").innerHTML = "";
+//}
+}
+
+attackCharacter()
+
+</script>
 
 </body>
 </html>
