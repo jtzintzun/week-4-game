@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Francois+One');
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
 body {
   background-color: black;
   background: url("../images/background3.gif");
@@ -9,24 +10,41 @@ body {
 }
 
 h1 {
-  padding-top: 5px;
+  padding-top: 12px;
   color: white;
   font-size: 35px;
   text-align: center;
-  font-family: 'Francois One', sans-serif;
-  padding-bottom: 5px;
+  font-family: 'Orbitron', sans-serif;
+
 }
 
 h2 {
   padding-top: 5px;
   color: white;
-  font-size: 15px;
+  font-size: 20px;
   text-align: center;
-  font-family: 'Francois One', sans-serif;
+  font-family: 'Orbitron', sans-serif;
 
 }
 
+h3 {
+  padding-top: 5px;
+  color: yellow;
+  text-shadow: 2px 2px 7px black;
+  font-size: 15px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
+h4 {
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
 table {
+
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
@@ -34,25 +52,64 @@ table {
   font-size: 15px;
 }
 th{
-
-
+  padding-bottom: 3px;
 }
 
-
+/* center formating images */
 .formating{
 border-radius: 10px;
-margin-left: 10px;
+margin-left: 20px;
 }
 .formatingEnemies{
 border-radius: 10px;
 }
 
-.container {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  clear: both;
+/* formating buttons */
+.attackButton{
+  float: left;
+  margin-top: 10%;
+  margin-left: 15px;
+  width: 100;
+  height: 30;
 }
+.restartButton{
+  float: right;
+  margin-top: 11%;
+  margin-right: 15px;
+  width: 100;
+  height: 30;
+}
+.attackResultsYou{
+  float: left;
+  margin-top: 2%;
+  margin-left: 15px;
+  width: 100;
+  height: 30;
+}
+.attackResultsEnemie{
+  float: right;
+  margin-top: 2%;
+  margin-right: 15px;
+  width: 100;
+  height: 30;
+}
+
+.characterLeft{
+  float: left;
+  margin-top: 6%;
+  margin-left: 80px;
+  width: 100;
+  height: 30;
+}
+.characterRight{
+  float: right;
+  margin-top: 6%;
+  margin-right: 80px;
+  width: 100;
+  height: 30;
+}
+
+
 
 #masterhead {
   border: 5px;
@@ -78,18 +135,18 @@ border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   width: 780px;
-  height: 240px;
+  height: 225px;
 }
-
+/* center Attack section */
 #enemiesToAttack{
   border: 5px;
   border-style: solid;
   border-color: yellow;
   border-radius: 10px;
   margin-left: 50px;
-  margin-right: auto;
+  margin-right: 100px;
   margin-top: 20px;
   margin-bottom: 20px;
   width: 160px;
@@ -97,11 +154,8 @@ border-radius: 10px;
   float: left;
 }
 
+/* center Section */
 #centerSection{
-  border: 5px;
-  border-style: solid;
-  border-color: yellow;
-  border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
@@ -110,37 +164,31 @@ border-radius: 10px;
   height: auto;
   float: left;
 }
-
-
 #fightSection{
-  border: 1px;
+  border:5px;
+  border-style: solid;
+  border-color: yellow;
   border-radius: 10px;
   width: 780px;
-  height: 400px;
+  height: 300px;
   float: left;
-  background: url("../images/players.jpg");
+  background: url("../images/background2.jpg");
   background-size: cover;
 }
-
 #panelSection{
-
+margin-top: 5px;
+  border: 5px;
+  border-style: solid;
+  border-color: yellow;
   border-radius: 10px;
   width: 780px;
-  height: 200px;
+  height: 167px;
   float: left;
   background: url("../images/controlPanel.jpg");
   background-size: cover;
 }
 
-
-
-
-
-
-
-
-
-
+/* center Defeated Section */
 #enemiesDefeated{
     border: 5px;
     border-style: solid;
@@ -149,7 +197,8 @@ border-radius: 10px;
     margin-right:50px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 100px;
     width: 160px;
     height: auto;
-    float: right;
+    float: left;
 }
