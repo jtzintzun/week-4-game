@@ -97,6 +97,7 @@ function setUpEvents() {
 
   var attactName = attackCharactersObjects.brief
     console.log("Brief attack setected coming from object: "+ attactName);
+    console.log("console button: "+ button);
 
 ///// Ends console log section
 
@@ -117,7 +118,7 @@ for (var i = 1; i < 5; i++) {
 
 }
 
-printCharacterSelected()
+//printCharacterSelected()
 
 
   function attackCharacter() {

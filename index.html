@@ -40,16 +40,24 @@
       <tbody>
         <tr>
           <td>
+            <button id="buttonCharacter1"; class="buttonCharacters" value=0 type="hidden">
             <img src="assets/images/unknown.png" id="selectCharacter1Image" class="formating" />
+            </button>
           </td>
           <td>
+            <button id="buttonCharacter1"; class="buttonCharacters" value=1>
             <img src="assets//images/unknown.png" id="selectCharacter2Image" class="formating" />
+            </button>
           </td>
           <td>
+            <button id="buttonCharacter1"; class="buttonCharacters" value=2>
             <img src="assets/images/unknown.png" id="selectCharacter3Image" class="formating"/>
+          </button>
           </td>
           <td>
+            <button id="buttonCharacter1"; class="buttonCharacters" value=3>
             <img src="assets/images/unknown.png" id="selectCharacter4Image" class="formating"/>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -143,10 +151,12 @@
         </div>
         <br>
         <div>
-          <button id="attack"; class="button attackButton" value=true> <p>ATTACK</p>
-          <button id="restart"; class="button restartButton" value=true> <p>RESTART</p>
+          <button id="attack"; class="button attackButton" value=1> <p>ATTACK</p>
+          </button>
+          <button id="restart"; class="button restartButton" value=0> <p>RESTART</p>
+          </button>
       </div>
-      </button>
+
     </div>
 
   </div>
@@ -207,6 +217,8 @@
 
 <script type="text/javascript">
 
+var button
+
 $(document).ready(function () {
 var action;
 
@@ -214,9 +226,12 @@ var action;
 
     var action = $(this).val();
     console.log("this is action1 value: " + action);
-
+button = action
     });
   });
+
+console.log("this is button value: " + button);
+
 </script>
 
 
