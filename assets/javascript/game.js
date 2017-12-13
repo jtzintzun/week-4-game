@@ -5,6 +5,10 @@ function setUpEvents() {
   var characterSelected;
   var enemiesCharactersObjects;
   var characterSelectedObject;
+  var buttonAlert2;
+  var fightStarted = false;
+  var enemySelected;
+  var enemySelectedObject;
 
 
   // creating the objects
@@ -25,37 +29,17 @@ function setUpEvents() {
   var character1 = new Character("Luke Skywalker", 100, 25, 25, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif")
   var character2 = new Character("Yoda", 125, 50, 50, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif")
   var character3 = new Character("Palpatine", 150, 75, 75, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif")
-  var character4 = new Character("Darth Vader", 125, 50, 50, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0")
+  var character4 = new Character("Darth Vader", 125, 50, 50, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")
+
+  // var character1 = new Character("Luke Skywalker", 100, 25, 25, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif")
+  // var character2 = new Character("Yoda", 125, 50, 50, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif")
+  // var character3 = new Character("Palpatine", 150, 75, 75, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif")
+  // var character4 = new Character("Darth Vader", 125, 50, 50, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")
+
 
   // ends creating objects
 
-
-  console.log("Initial value of Var gameStarted: " + gameStarted);
-
-  //  Start on click.
-
-
-  $(".buttonCharacters").on("click", function(e) {
-    var values = $(this).val();
-    buttonAlert = values;
-    buttonAlert = parseInt(buttonAlert);
-    gameStarted = true;
-    console.log("Value of Var gameStarted insite function clicked: " + gameStarted);
-    initializer();
-
-  });
-
-  // Use a function to initialize our game.
-  function initializer() {
-    console.log("Value of Var gameStarted outsite function clicked: " + gameStarted);
-    console.log("Value of the button clicked: " + buttonAlert);
-    characterSelected = buttonAlert
-    console.log("character selected Number inside initiazer: " + characterSelected);
-    startSelectCharacter();
-    console.log("Character selected Name :" + characterSelectedObject.name);
-  }
-
-  //Setting characters to select
+  // Building the initial screen.  - Step 1
 
   function selectCharacterSetUp() {
 
@@ -75,10 +59,34 @@ function setUpEvents() {
     document.getElementById("selectPosition4Title").innerHTML = character4.name;
     document.getElementById("selectPosition4Image").src = "assets/images/" + character4.image100 + ".jpg";
     document.getElementById("selectPosition4Footer").innerHTML = "HP: " + character4.healtPoints;
-
-  } //End setting characters to select
+    console.log("Initial value of Var gameStarted: " + gameStarted);
+  } //End selectCharacterSetUp function
 
   selectCharacterSetUp()
+
+  //  Start on click to Select a character. - Step 2
+
+  $(".buttonCharacters").on("click", function(e) {
+    var values = $(this).val();
+    buttonAlert = values;
+    buttonAlert = parseInt(buttonAlert);
+    gameStarted = true;
+    console.log("Value of Var gameStarted insite function clicked: " + gameStarted);
+    initializer();
+
+  });
+
+  // Use this function to initialize our game. - Step 3
+  function initializer() {
+    console.log("Value of Var gameStarted outsite function clicked: " + gameStarted);
+    console.log("Value of the button clicked: " + buttonAlert);
+    characterSelected = buttonAlert
+    console.log("character selected Number inside initiazer: " + characterSelected);
+    startSelectCharacter();
+    console.log("Character selected Name :" + characterSelectedObject.name);
+  }
+
+// Use this function to select your character to play. - Step 4
 
   function startSelectCharacter() {
     console.log("characterSelected " + characterSelected);
@@ -88,11 +96,10 @@ function setUpEvents() {
     enemiesCharactersObjects = availableCharactersObjects
     printCharacterSelected()
     printEnemySelected()
-    //attackCharacter()
-  }
+  } //End startSelectCharacter function
 
 
-  /// Function print on screen the character selected
+  // Function print on screen the character selected. - Step 5
 
   function printCharacterSelected() {
     document.getElementById("messageSelectCharacter").innerHTML = "Your Character";
@@ -102,31 +109,33 @@ function setUpEvents() {
       document.getElementById("selectPosition" + i + "Image").src = "assets/images/orangeButton.jpeg"
       document.getElementById("selectPosition" + i + "Footer").innerHTML = "";
     }
-
     document.getElementById("selectPosition2Title").innerHTML = characterSelectedObject.name;
     document.getElementById("selectPosition2Image").src = "assets/images/" + characterSelectedObject.image100 + ".jpg";
     document.getElementById("selectPosition2Footer").innerHTML = "HP: " + characterSelectedObject.healtPoints;
     document.getElementById("selectPosition3Title").innerHTML = characterSelectedObject.brief;
 
 
-  } /// Ends Function  print Character Selected
+  } // Ends Function  print Character Selected
+//------------------------------------------------------------------------------------
 
-  //
+// Function print on screen enemies avalable to attack - Step 6
 
   function printEnemySelected() {
     console.log(enemiesCharactersObjects);
     var enemy1 = enemiesCharactersObjects[0]
     var enemy2 = enemiesCharactersObjects[1]
     var enemy3 = enemiesCharactersObjects[2]
+
     console.log("Enemies lenght" + enemiesCharactersObjects.length);
-    console.log(enemy1);
-    console.log(enemy2);
-    console.log(enemy3);
+    // console.log("enemy1.name " + enemy1.name);
+    // console.log("enemy2.Name " + enemy2.Name);
+    // console.log("enemy3.Name" + enemy3.name);
     var lenght = enemiesCharactersObjects.length;
     var a
     console.log("var lenght " + lenght);
     a = lenght
     console.log("log A :" + a);
+
     if (a > 0) {
       console.log("logging count" + a);
       document.getElementById("attackCharacter1Title").innerHTML = enemy1.name;
@@ -156,7 +165,85 @@ function setUpEvents() {
       document.getElementById("attackCharacter" + 3 + "Footer").innerHTML = "";
     }
 
+  } // End function printEnemySelected
+
+  //  Start on click to Select a character. - Step 7
+
+  $(".buttonEnemies").on("click", function(e) {
+    var values = $(this).val();
+    buttonAlert2 = values;
+    buttonAlert2 = parseInt(buttonAlert2);
+    fightStarted = true;
+    console.log("Value of Var fightStarted insite function clicked: " + fightStarted);
+    initializerCombat();
+
+  });
+
+  // Use this function to initialize combat. - Step 8
+  function initializerCombat() {
+    console.log("Value of Var gameStarted outsite function clicked: " + fightStarted);
+    console.log("Value of the button clicked: " + buttonAlert2);
+    enemySelected = buttonAlert2
+    console.log("Enemy selected Number inside initiazer: " + enemySelected);
+    startSelectEnemy();
+    console.log("Enemy selected Name :" + enemySelectedObject.name);
   }
+
+  // Use this function to select your enemy to play. - Step 9
+
+    function startSelectEnemy() {
+      console.log("EnemySelected " + enemySelected);
+      enemySelectedObject = enemiesCharactersObjects[enemySelected]
+      enemiesCharactersObjects.splice(enemySelected, 1);
+      console.log("new array of enemies " + enemiesCharactersObjects);
+      printEnemySelected()
+      fightCharacters()
+
+    } //End startSelectEnemy function
+
+    // display de fighters on the fight Section  - Step 9
+
+    function fightCharacters() {
+      document.getElementById("fightCharacter1Image").src = "assets/images/" + characterSelectedObject.imageGif + ".gif";
+      document.getElementById("fightCharacter2Image").src = "assets/images/" + enemySelectedObject.imageGif + ".gif";
+    } // end Function Gif fight Section
+
+
+    $(".attackButton").on("click", function(e) {
+      var values = $(this).val();
+      buttonAlert3 = values;
+      buttonAlert3 = parseInt(buttonAlert3);
+      attackStarted = true;
+      console.log("Value of Var attackStarted insite function clicked: " + attackStarted);
+      attacking ();
+
+    });
+
+function attacking (){
+
+
+  console.log("Your HP before attack"+ characterSelectedObject.healtPoints);
+  characterSelectedObject.healtPoints = characterSelectedObject.healtPoints - enemySelectedObject.attackPower
+  console.log("Your HP after attack"+ characterSelectedObject.healtPoints);
+  console.log("your counter Attack Power before attack"+characterSelectedObject.counterAttackPower);
+  characterSelectedObject.counterAttackPower = characterSelectedObject.counterAttackPower+characterSelectedObject.attackPower
+  console.log("your counter Attack Power after attack"+characterSelectedObject.counterAttackPower);
+  console.log("enemy HP before Attack" + enemySelectedObject.healtPoints);
+  enemySelectedObject.healtPoints = enemySelectedObject.healtPoints - characterSelectedObject.counterAttackPower
+  console.log("enemy HP After Attack" + enemySelectedObject.healtPoints);
+
+  fightMessajes()
+}
+
+
+    // Function fightMessajes
+
+    function fightMessajes() {
+      document.getElementById("message1").innerHTML = "You attacked " + enemySelectedObject.name + " for " + characterSelectedObject.counterAttackPower + " damage";
+      document.getElementById("message2").innerHTML = enemySelectedObject.name + " attacked you back for " + enemySelectedObject.attackPower + " damage"
+      document.getElementById("selectPosition2Footer").innerHTML = "HP: " + characterSelectedObject.healtPoints;
+
+    } // end Function fightMessajes
 
 
 
@@ -180,21 +267,10 @@ function setUpEvents() {
   //
   // defeadedCharacters()
   //
-  // // Function Gif fight Section
-  //
-  // function fightCharacters() {
-  //   document.getElementById("fightCharacter1Image").src = "assets/images/" + character1.imageGif + ".gif";
-  //   document.getElementById("fightCharacter2Image").src = "assets/images/" + character3.imageGif + ".gif";
-  // } // end Function Gif fight Section
+
   //
   // fightCharacters()
   //
-  // // Function fightMessajes
-  //
-  // function fightMessajes() {
-  //   document.getElementById("message1").innerHTML = "You attacked " + character1.name + " for " + character1.attackPower + " damage";
-  //   document.getElementById("message2").innerHTML = character2.name + " attacked you back for " + character2.counterAttackPower + " damage"
-  // } // end Function fightMessajes
   //
   // fightMessajes()
 
