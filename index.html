@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script src="assets/javascript/game.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <title>Game - Star Wars RPG</title>
 </head>
@@ -24,39 +24,39 @@
       <thead>
         <tr>
           <th>
-            <h4 id="selectCharacter1Title">character1</h4>
+            <h4 id="selectPosition1Title">character1</h4>
           </th>
           <th>
-            <h4 id="selectCharacter2Title">character2</h4>
+            <h4 id="selectPosition2Title">character2</h4>
           </th>
           <th>
-            <h4 id="selectCharacter3Title">character3</h4>
+            <h4 id="selectPosition3Title">character3</h4>
           </th>
           <th>
-            <h4 id="selectCharacter4Title">character4</h4>
+            <h4 id="selectPosition4Title">character4</h4>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <button id="buttonCharacter1"; class="buttonCharacters" value=0 type="hidden">
-            <img src="assets/images/unknown.png" id="selectCharacter1Image" class="formating" />
+            <button id="selectButtonPosition1"; class="buttonCharacters" value=0>
+            <img src="assets/images/unknown.png" id="selectPosition1Image" class="formating" />
             </button>
           </td>
           <td>
-            <button id="buttonCharacter1"; class="buttonCharacters" value=1>
-            <img src="assets//images/unknown.png" id="selectCharacter2Image" class="formating" />
+            <button id="selectButtonPosition2"; class="buttonCharacters" value=1>
+            <img src="assets//images/unknown.png" id="selectPosition2Image" class="formating" />
             </button>
           </td>
           <td>
-            <button id="buttonCharacter1"; class="buttonCharacters" value=2>
-            <img src="assets/images/unknown.png" id="selectCharacter3Image" class="formating"/>
+            <button id="selectButtonPosition3"; class="buttonCharacters" value=2>
+            <img src="assets/images/unknown.png" id="selectPosition3Image" class="formating"/>
           </button>
           </td>
           <td>
-            <button id="buttonCharacter1"; class="buttonCharacters" value=3>
-            <img src="assets/images/unknown.png" id="selectCharacter4Image" class="formating"/>
+            <button id="selectButtonPosition4"; class="buttonCharacters" value=3>
+            <img src="assets/images/unknown.png" id="selectPosition4Image" class="formating"/>
             </button>
           </td>
         </tr>
@@ -64,16 +64,16 @@
       <tfood>
         <tr>
           <td>
-            <h4 id="selectCharacter1Footer">footer1</h4>
+            <h4 id="selectPosition1Footer">footer1</h4>
           </td>
           <td>
-            <h4 id="selectCharacter2Footer">footer2</h4>
+            <h4 id="selectPosition2Footer">footer2</h4>
           </td>
           <td>
-          <h4 id="selectCharacter3Footer">footer3</h4>
+          <h4 id="selectPosition3Footer">footer3</h4>
           </td>
           <td>
-          <h4 id="selectCharacter4Footer">footer4</h4>
+          <h4 id="selectPosition4Footer">footer4</h4>
           </td>
         </tr>
       </tfood>
@@ -93,7 +93,9 @@
       </tr>
       <tr>
         <td>
+          <button id="buttonEnemy1"; class="buttonEnemies" value=0>
           <img src="assets/images/unknown.png" id="attackCharacter1Image"class="formatingEnemies"/>
+        </button>
         </td>
       </tr>
       <tr>
@@ -109,7 +111,9 @@
       </tr>
       <tr>
         <td>
+          <button id="buttonEnemy2"; class="buttonEnemies" value=2>
           <img src="assets/images/unknown.png" id="attackCharacter2Image"class="formatingEnemies"/>
+          </button>
         </td>
       </tr>
       <tr>
@@ -125,7 +129,9 @@
       </tr>
       <tr>
         <td>
+          <button id="buttonEnemy3"; class="buttonEnemies" value=3>
           <img src="assets/images/unknown.png" id="attackCharacter3Image"class="formatingEnemies"/>
+        </button>
         </td>
       </tr>
       <tr>
@@ -140,24 +146,24 @@
 
     <div id="fightSection">
       <h1>Fight Section</h1>
-      <input type="image" src="assets/images/unknown.png" id="fightCharacter1Image" class="characterLeft"/>
-      <input type="image" src="assets/images/unknown.png" id="fightCharacter2Image" class="characterRight"/>
+    <input type="image" src="assets/images/unknown.png" id="fightCharacter1Image" class="characterLeft" />
+    <input type="image" src="assets/images/unknown.png" id="fightCharacter2Image" class="characterRight" />
 
+  </div>
+  <div id="panelSection">
+    <div>
+      <h3 id="message1" class="attackResultsYou">Message one</h3>
+      <h3 id="message2" class="attackResultsEnemie">Message two</h3>
     </div>
-    <div id="panelSection">
-        <div>
-          <h3 id="message1"class="attackResultsYou">Message one</h3>
-          <h3 id="message2"class="attackResultsEnemie">Message two</h3>
-        </div>
-        <br>
-        <div>
-          <button id="attack"; class="button attackButton" value=1> <p>ATTACK</p>
+    <br>
+    <div>
+      <button id="attack" ; class="button attackButton" value=1> <p>ATTACK</p>
           </button>
-          <button id="restart"; class="button restartButton" value=0> <p>RESTART</p>
+      <button id="restart" ; class="button restartButton" value=0> <p>RESTART</p>
           </button>
-      </div>
+    </div>
 
-    </div>
+  </div>
 
   </div>
 
@@ -171,12 +177,12 @@
       </tr>
       <tr>
         <td>
-          <img src="assets/images/unknown.png" id="defeadedCharacter1Image" class="formatingEnemies"/>
+          <img src="assets/images/unknown.png" id="defeadedCharacter1Image" class="formatingEnemies" />
         </td>
       </tr>
       <tr>
         <td>
-        <h4 id="defeadedCharacter1Footer">footer1</h4>
+          <h4 id="defeadedCharacter1Footer">footer1</h4>
         </td>
       </tr>
       <tr>
@@ -186,12 +192,12 @@
       </tr>
       <tr>
         <td>
-          <img src="assets/images/unknown.png" id="defeadedCharacter2Image"class="formatingEnemies"/>
+          <img src="assets/images/unknown.png" id="defeadedCharacter2Image" class="formatingEnemies" />
         </td>
       </tr>
       <tr>
         <td>
-        <h4 id="defeadedCharacter2Footer">footer2</h4>
+          <h4 id="defeadedCharacter2Footer">footer2</h4>
         </td>
       </tr>
 
@@ -202,38 +208,33 @@
       </tr>
       <tr>
         <td>
-          <img src="assets/images/unknown.png" id="defeadedCharacter3Image" class="formatingEnemies"/>
+          <img src="assets/images/unknown.png" id="defeadedCharacter3Image" class="formatingEnemies" />
         </td>
       </tr>
       <tr>
         <td>
-        <h4 id="defeadedCharacter3Footer">footer3</h4>
+          <h4 id="defeadedCharacter3Footer">footer3</h4>
         </td>
       </tr>
-  </table>
+    </table>
   </div>
 
-</div>
+  </div>
 
-<script type="text/javascript">
-
-var button
-
-$(document).ready(function () {
-var action;
-
-    $('button').click(function (e) {
-
-    var action = $(this).val();
-    console.log("this is action1 value: " + action);
-button = action
-    });
-  });
-
-console.log("this is button value: " + button);
-
-</script>
+  <script type="text/javascript">
+    // var button
+    //
+    // $(document).ready(function() {
+    //   $('button').click(function(e) {
+    //     var action = $(this).val();
+    //     console.log("this is action value: " + action);
+    //     button = action;
+    //   });
+    // });
+    // console.log("this is button value: " + button);
+  </script>
 
 
 </body>
+
 </html>
