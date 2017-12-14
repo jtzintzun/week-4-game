@@ -9,8 +9,10 @@ function setUpEvents() {
   var fightStarted = false;
   var enemySelected;
   var enemySelectedObject;
-  var maxEnemies =3;
-  var availableCharactersObjects;
+  var maxEnemies = 3;
+  var availableCharactersObjects
+  var charactersDefeaded = []
+
 
 
 
@@ -28,30 +30,27 @@ function setUpEvents() {
     this.image0 = image0;
     this.imageGif = imageGif;
   }
-function resetCharacters(){
-  availableCharactersObjects = [
-    new Character("Luke Skywalker", 100, 25, 25, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif"),
-    new Character("Yoda", 125, 50, 50, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif"),
-    new Character("Palpatine", 150, 75, 75, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif"),
-    new Character("Darth Vader", 125, 50, 50, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")];
-};
+
+  function resetCharacters() {
+    availableCharactersObjects = [
+      new Character("Luke Skywalker", 100, 5, 5, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif"),
+      new Character("Yoda", 125, 15, 15, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif"),
+      new Character("Palpatine", 150, 20, 20, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif"),
+      new Character("Darth Vader", 125, 14, 14, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")
+    ];
+  };
   // ends creating objects
 
   // Building the initial screen.  - Step 1
 
   function selectCharacterSetUp() {
-      resetCharacters();
-    //var availableCharactersObjects = [character1, character2, character3, character4]
-    $.each(availableCharactersObjects, function(index, character){
+    resetCharacters();
+    $.each(availableCharactersObjects, function(index, character) {
       index++;
-
-           $("#selectPosition"+ index +"Title").html(character.name);
-               $("#selectPosition"+ index +"Image").attr("src","assets/images/" + character.image100 + ".jpg");
-               $("#selectPosition"+ index +"Footer").html("HP: "+ character.healtPoints);
-     });
-
-
-
+      $("#selectPosition" + index + "Title").html(character.name);
+      $("#selectPosition" + index + "Image").attr("src", "assets/images/" + character.image100 + ".jpg");
+      $("#selectPosition" + index + "Footer").html("HP: " + character.healtPoints);
+    });
   } //End selectCharacterSetUp function
 
   selectCharacterSetUp()
@@ -65,15 +64,9 @@ function resetCharacters(){
     gameStarted = true;
     console.log("Value of Var gameStarted insite function clicked: " + gameStarted);
     console.log("characterSelected: " + characterSelected);
-
-if (characterSelected === undefined){
-
- initializer();
-
-}
-
-
-
+    if (characterSelected === undefined) {
+      initializer();
+    }
   });
 
   // Use this function to initialize our game. - Step 3
@@ -86,11 +79,10 @@ if (characterSelected === undefined){
     console.log("Character selected Name :" + characterSelectedObject.name);
   }
 
-// Use this function to select your character to play. - Step 4
+  // Use this function to select your character to play. - Step 4
 
   function startSelectCharacter() {
     console.log("characterSelected " + characterSelected);
-    //var availableCharactersObjects = [character1, character2, character3, character4]
     characterSelectedObject = availableCharactersObjects[characterSelected]
     availableCharactersObjects.splice(characterSelected, 1);
     enemiesCharactersObjects = availableCharactersObjects
@@ -98,102 +90,51 @@ if (characterSelected === undefined){
     printEnemySelected()
   } //End startSelectCharacter function
 
-
   // Function print on screen the character selected. - Step 5
 
   function printCharacterSelected() {
-    document.getElementById("messageSelectCharacter").innerHTML = "Your Character";
+
+    $("#messageSelectCharacter").html("Your Character")
 
     for (var i = 1; i < 5; i++) {
-      document.getElementById("selectPosition" + i + "Title").innerHTML = "";
-      document.getElementById("selectPosition" + i + "Image").src = "assets/images/orangeButton.jpeg"
-      document.getElementById("selectPosition" + i + "Footer").innerHTML = "";
+      $("#selectPosition" + i + "Title").html("");
+      $("#selectPosition" + i + "Image").attr("src", "assets/images/orangeButton.jpeg");
+      $("#selectPosition" + i + "Footer").html("");
+
     }
-    document.getElementById("selectPosition2Title").innerHTML = characterSelectedObject.name;
-    document.getElementById("selectPosition2Image").src = "assets/images/" + characterSelectedObject.image100 + ".jpg";
-    document.getElementById("selectPosition2Footer").innerHTML = "HP: " + characterSelectedObject.healtPoints;
-    document.getElementById("selectPosition3Title").innerHTML = characterSelectedObject.brief;
-
-
+    $("#selectPosition1Title").html(characterSelectedObject.name)
+    $("#selectPosition1Image").attr("src", "assets/images/" + characterSelectedObject.image100 + ".jpg")
+    $("#selectPosition1Footer").html("HP: " + characterSelectedObject.healtPoints)
+    //$("#selectPosition2Title").html(characterSelectedObject.brief)
   } // Ends Function  print Character Selected
-//------------------------------------------------------------------------------------
 
-// Function print on screen enemies avalable to attack - Step 6
+  //------------------------------------------------------------------------------------
+
+  // Function print on screen enemies avalable to attack - Step 6
 
   function printEnemySelected() {
     console.log(enemiesCharactersObjects);
 
-if (enemiesCharactersObjects.length< maxEnemies) {
-      var index = enemiesCharactersObjects.length +1;
+    if (enemiesCharactersObjects.length < maxEnemies) {
+      var index = enemiesCharactersObjects.length + 1;
 
+      $("#attackCharacter" + index + "Title").remove();
+      $("#attackCharacter" + index + "Image").remove();
+      $("#attackCharacter" + index + "Footer").remove();
 
-      $("#attackCharacter"+ index + "Title").remove();
-      $("#attackCharacter"+ index + "Image").remove();
-      $("#attackCharacter"+ index + "Footer").remove();
-
-}
-
-
-    $.each(enemiesCharactersObjects, function(index,enemy){
-
-      index++;
-
-      console.log("index " + index + " enemy " + enemy.name);
-            console.log("index " + index + " enemy " + enemy.image100);
-
-
-      $("#attackCharacter"+ index +"Title").html(enemy.name);
-      $("#attackCharacter"+ index + "Image").attr("src","assets/images/" + enemy.image100 + ".jpg");
-      $("#attackCharacter"+ index+ "Footer").html(enemy.healtPoints);
     }
 
-      )
+    $.each(enemiesCharactersObjects, function(index, enemy) {
+        index++;
+        console.log("index " + index + " enemy " + enemy.name);
+        console.log("index " + index + " enemy " + enemy.image100);
 
+        $("#attackCharacter" + index + "Title").html(enemy.name);
+        $("#attackCharacter" + index + "Image").attr("src", "assets/images/" + enemy.image100 + ".jpg");
+        $("#attackCharacter" + index + "Footer").html(enemy.healtPoints);
+      }
 
-
-
-    // var enemy1 = enemiesCharactersObjects[0]
-    // var enemy2 = enemiesCharactersObjects[1]
-    // var enemy3 = enemiesCharactersObjects[2]
-
-    // console.log("Enemies lenght" + enemiesCharactersObjects.length);
-    // // console.log("enemy1.name " + enemy1.name);
-    // // console.log("enemy2.Name " + enemy2.Name);
-    // // console.log("enemy3.Name" + enemy3.name);
-    // var lenght = enemiesCharactersObjects.length;
-    // var a
-    // console.log("var lenght " + lenght);
-    // a = lenght
-    // console.log("log A :" + a);
-
-    // if (a > 0) {
-    //   console.log("logging count" + a);
-    //   //document.getElementById("attackCharacter1Title").innerHTML = enemy1.name;
-    //   document.getElementById("attackCharacter1Image").src = "assets/images/" + enemy1.image100 + ".jpg";
-    //   document.getElementById("attackCharacter1Footer").innerHTML = "HP: " + enemy1.healtPoints;
-    // } else {
-    //   //document.getElementById("attackCharacter" + 1 + "Title").innerHTML = "";
-    //   document.getElementById("attackCharacter" + 1 + "Image").src = "";
-    //   document.getElementById("attackCharacter" + 1 + "Footer").innerHTML = "";
-    // }
-    // if (a > 1) {
-    //   //document.getElementById("attackCharacter2Title").innerHTML = enemy2.name;
-    //   document.getElementById("attackCharacter2Image").src = "assets/images/" + enemy2.image100 + ".jpg";
-    //   document.getElementById("attackCharacter2Footer").innerHTML = "HP: " + enemy2.healtPoints;
-    // } else {
-    //   //document.getElementById("attackCharacter" + 2 + "Title").innerHTML = "";
-    //   document.getElementById("attackCharacter" + 2 + "Image").src = "";
-    //   document.getElementById("attackCharacter" + 2 + "Footer").innerHTML = "";
-    // }
-    // if (a > 2) {
-    //   //document.getElementById("attackCharacter3Title").innerHTML = enemy3.name;
-    //   document.getElementById("attackCharacter3Image").src = "assets/images/" + enemy3.image100 + ".jpg";
-    //   document.getElementById("attackCharacter3Footer").innerHTML = "HP: " + enemy3.healtPoints;
-    // } else {
-    //   //document.getElementById("attackCharacter" + 3 + "Title").innerHTML = "";
-    //   document.getElementById("attackCharacter" + 3 + "Image").src = "";
-    //   document.getElementById("attackCharacter" + 3 + "Footer").innerHTML = "";
-    // }
+    )
 
   } // End function printEnemySelected
 
@@ -205,16 +146,15 @@ if (enemiesCharactersObjects.length< maxEnemies) {
     buttonAlert2 = parseInt(buttonAlert2);
     fightStarted = true;
     console.log("Value of Var fightStarted insite function clicked: " + fightStarted);
-   console.log("characterSelected value enemy click: " + characterSelected);
-   if (enemySelected === undefined && characterSelected !== undefined) {
+    console.log("characterSelected value enemy click: " + characterSelected);
+    if (enemySelected === undefined && characterSelected !== undefined) {
 
-
-
-    initializerCombat();
-
-   }
+      initializerCombat();
+    }
 
   });
+
+//------------------------------------------------------------------------------
 
   // Use this function to initialize combat. - Step 8
   function initializerCombat() {
@@ -228,64 +168,119 @@ if (enemiesCharactersObjects.length< maxEnemies) {
 
   // Use this function to select your enemy to play. - Step 9
 
-    function startSelectEnemy() {
-      console.log("EnemySelected " + enemySelected);
-      enemySelectedObject = enemiesCharactersObjects[enemySelected]
-      enemiesCharactersObjects.splice(enemySelected, 1);
-      console.log("new array of enemies " + enemiesCharactersObjects);
-      printEnemySelected()
-      fightCharacters()
+  function startSelectEnemy() {
+    console.log("EnemySelected " + enemySelected);
+    enemySelectedObject = enemiesCharactersObjects[enemySelected]
+    enemiesCharactersObjects.splice(enemySelected, 1);
+    console.log("new array of enemies " + enemiesCharactersObjects);
+    printEnemySelected()
+    fightCharacters()
 
-    } //End startSelectEnemy function
+  } //End startSelectEnemy function
 
-    // display de fighters on the fight Section  - Step 9
+  // display the fighters on the fight Section  - Step 10
 
-    function fightCharacters() {
-      document.getElementById("fightCharacter1Image").src = "assets/images/" + characterSelectedObject.imageGif + ".gif";
-      document.getElementById("fightCharacter2Image").src = "assets/images/" + enemySelectedObject.imageGif + ".gif";
-    } // end Function Gif fight Section
+  function fightCharacters() {
+    document.getElementById("fightCharacter1Image").src = "assets/images/" + characterSelectedObject.imageGif + ".gif";
+    document.getElementById("fightCharacter2Image").src = "assets/images/" + enemySelectedObject.imageGif + ".gif";
 
+    $("#selectPosition4Title").html(enemySelectedObject.name)
+    $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image100 + ".jpg")
+    $("#selectPosition4Footer").html("HP: " + enemySelectedObject.healtPoints)
+  } // end Function Gif fight Section
 
-    $(".attackButton").on("click", function(e) {
-      var values = $(this).val();
-      buttonAlert3 = values;
-      buttonAlert3 = parseInt(buttonAlert3);
-      attackStarted = true;
-      console.log("Value of Var attackStarted insite function clicked: " + attackStarted);
-      attacking ();
+  //  Start on click to fight an enemy. - Step 7
 
+  $(".attackButton").on("click", function(e) {
+    var values = $(this).val();
+    buttonAlert3 = values;
+    buttonAlert3 = parseInt(buttonAlert3);
+    attackStarted = true;
+    console.log("Value of Var attackStarted insite function clicked: " + attackStarted);
 
-    });
-
-function attacking (){
-
-  enemySelected = undefined;
-  console.log("characterSelected value: " + characterSelected);
-
-  console.log("Your HP before attack"+ characterSelectedObject.healtPoints);
-  characterSelectedObject.healtPoints = characterSelectedObject.healtPoints - enemySelectedObject.attackPower
-  console.log("Your HP after attack"+ characterSelectedObject.healtPoints);
-  console.log("your counter Attack Power before attack"+characterSelectedObject.counterAttackPower);
-  characterSelectedObject.counterAttackPower = characterSelectedObject.counterAttackPower+characterSelectedObject.attackPower
-  console.log("your counter Attack Power after attack"+characterSelectedObject.counterAttackPower);
-  console.log("enemy HP before Attack" + enemySelectedObject.healtPoints);
-  enemySelectedObject.healtPoints = enemySelectedObject.healtPoints - characterSelectedObject.counterAttackPower
-  console.log("enemy HP After Attack" + enemySelectedObject.healtPoints);
-
-//console.log("character1" + character1.healtPoints)
-
-  fightMessajes()
-}
+    // if (enemySelected !== undefined && characterSelected !== undefined) {
+    //   document.getElementById("message1").innerHTML = "SELECT A CHARACTER & AN ENEMY TO START THE GAME ";
+    // }
 
 
-    // Function fightMessajes
+    if (enemySelectedObject.healtPoints && characterSelectedObject.healtPoints > -1){
+      console.log( "enemy HP:" + enemySelectedObject.healtPoints + "your HP" + characterSelectedObject.healtPoints + "on click event" );
+      attacking();
+    }
 
-    function fightMessajes() {
-      document.getElementById("message1").innerHTML = "You attacked " + enemySelectedObject.name + " for " + characterSelectedObject.counterAttackPower + " damage";
-      document.getElementById("message2").innerHTML = enemySelectedObject.name + " attacked you back for " + enemySelectedObject.attackPower + " damage"
-      document.getElementById("selectPosition2Footer").innerHTML = "HP: " + characterSelectedObject.healtPoints;
+  });
 
-    } // end Function fightMessajes
+  function attacking() {
+
+
+    console.log("characterSelected value: " + characterSelected);
+
+    console.log("Your HP before attack" + characterSelectedObject.healtPoints);
+    characterSelectedObject.healtPoints = characterSelectedObject.healtPoints - enemySelectedObject.attackPower
+
+    console.log("Your HP after attack" + characterSelectedObject.healtPoints);
+    console.log("your counter Attack Power before attack" + characterSelectedObject.counterAttackPower);
+
+    characterSelectedObject.counterAttackPower = characterSelectedObject.counterAttackPower + characterSelectedObject.attackPower
+    console.log("your counter Attack Power after attack" + characterSelectedObject.counterAttackPower);
+    console.log("enemy HP before Attack" + enemySelectedObject.healtPoints);
+
+    enemySelectedObject.healtPoints = enemySelectedObject.healtPoints - characterSelectedObject.counterAttackPower
+    console.log("enemy HP After Attack" + enemySelectedObject.healtPoints);
+
+    //console.log("character1" + character1.healtPoints)
+
+    fightMessajes()
+  }
+
+  function combat(){
+
+    if (enemySelectedObject.healtPoints && characterSelectedObject.healtPoints > 0){
+      console.log("Fighers in combat conditions");
+    }
+    if (enemySelectedObject.healtPoints < 0){
+      console.log("You WIN!");
+      win()
+    }
+
+    if (characterSelectedObject.healtPoints < 0){
+      console.log("You LOST!");
+      lose()
+    }
+
+  }
+
+
+  // Function fightMessajes
+
+  function fightMessajes() {
+
+    //$("message1").html("You attacked " + enemySelectedObject.name + " for " + characterSelectedObject.counterAttackPower + " damage");
+    document.getElementById("message1").innerHTML = "You attacked " + enemySelectedObject.name + " for " + characterSelectedObject.counterAttackPower + " damage";
+    document.getElementById("message2").innerHTML = enemySelectedObject.name + " attacked you back for " + enemySelectedObject.attackPower + " damage"
+    document.getElementById("selectPosition1Footer").innerHTML = "HP: " + characterSelectedObject.healtPoints;
+    document.getElementById("selectPosition4Footer").innerHTML = "HP: " + enemySelectedObject.healtPoints;
+
+    combat()
+  } // end Function fightMessajes
+
+  function lose(){
+    $("#selectPosition1Image").attr("src", "assets/images/" + characterSelectedObject.image0 + ".jpg")
+    document.getElementById("message1").innerHTML = "YOU LOST!";
+    document.getElementById("message2").innerHTML = "CLICK RESTART TO CONTINUE"
+
+  }
+
+  function win(){
+
+    $("#fightCharacter2Image").attr("src", "assets/images/" + enemySelectedObject.image0 + ".jpg")
+
+    document.getElementById("message1").innerHTML = "YOU WIN!";
+    document.getElementById("message2").innerHTML = "SELECT A NEW ENEMY TO CONTINUE"
+
+    enemySelected = undefined;
+
+  }
 
 
 
@@ -306,15 +301,7 @@ function attacking (){
   //   document.getElementById("defeadedCharacter3Footer").innerHTML = "HP: " + character3.healtPoints;
   //
   // } // End function images defeaded Characters
-  //
-  // defeadedCharacters()
-  //
 
-  //
-  // fightCharacters()
-  //
-  //
-  // fightMessajes()
 
 
 } //End setUpEvents Function
