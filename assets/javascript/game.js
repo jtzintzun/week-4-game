@@ -17,7 +17,7 @@ function setUpEvents() {
 
 
   // creating the objects
-  function Character(name, healtPoints, attackPower, counterAttackPower, brief, image100, image75, image50, image25, image0, imageGif) {
+  function Character(name, healtPoints, attackPower, counterAttackPower, brief, image100, image75, image50, image25, image0, imageGif, initialHealtPoints) {
     this.name = name;
     this.healtPoints = healtPoints;
     this.attackPower = attackPower;
@@ -29,14 +29,15 @@ function setUpEvents() {
     this.image25 = image25;
     this.image0 = image0;
     this.imageGif = imageGif;
+    this.initialHealtPoints = initialHealtPoints;
   }
 
   function resetCharacters() {
     availableCharactersObjects = [
-      new Character("Luke Skywalker", 100, 5, 5, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif"),
-      new Character("Yoda", 125, 15, 15, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif"),
-      new Character("Palpatine", 150, 20, 20, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif"),
-      new Character("Darth Vader", 125, 14, 14, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")
+      new Character("Luke Skywalker", 100, 5, 5, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif",100),
+      new Character("Yoda", 125, 15, 15, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif", 125),
+      new Character("Palpatine", 150, 20, 20, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif",150),
+      new Character("Darth Vader", 125, 14, 14, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif",125)
     ];
   };
   // ends creating objects
@@ -187,6 +188,7 @@ function setUpEvents() {
     $("#selectPosition4Title").html(enemySelectedObject.name)
     $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image100 + ".jpg")
     $("#selectPosition4Footer").html("HP: " + enemySelectedObject.healtPoints)
+    $("#messageSelectCharacter").html("FIGHTERS")
   } // end Function Gif fight Section
 
   //  Start on click to fight an enemy. - Step 7
@@ -243,9 +245,46 @@ function setUpEvents() {
 
   function combat(){
 
+    var healtPercent = characterSelectedObject.healtPoints / characterSelectedObject.initialHealtPoints;
+    console.log(healtPercent);
+    if(healtPercent < 0.75 && healtPercent > 0.50){
+          console.log(healtPercent);
+          $("#selectPosition1Image").attr("src", "assets/images/" + characterSelectedObject.image75 + ".jpg")
+    }
+
+    if(healtPercent < 0.50 && healtPercent > 0.25){
+          console.log(healtPercent);
+          $("#selectPosition1Image").attr("src", "assets/images/" + characterSelectedObject.image50 + ".jpg")
+    }
+
+    if(healtPercent < 0.25 && healtPercent >
+      0){
+          console.log(healtPercent);
+          $("#selectPosition1Image").attr("src", "assets/images/" + characterSelectedObject.image25 + ".jpg")
+    }
+
+    var healtPercent2 = enemySelectedObject.healtPoints / enemySelectedObject.initialHealtPoints;
+    console.log(healtPercent);
+    if(healtPercent < 0.75 && healtPercent > 0.50){
+          console.log(healtPercent);
+          $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image75 + ".jpg")
+    }
+
+    if(healtPercent < 0.50 && healtPercent > 0.25){
+          console.log(healtPercent);
+          $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image50 + ".jpg")
+    }
+
+    if(healtPercent < 0.25 && healtPercent >
+      0){
+          console.log(healtPercent);
+          $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image25 + ".jpg")
+    }
+
     if (enemySelectedObject.healtPoints < 0){
       console.log("You WIN!");
       win()
+
     }
 
     if (characterSelectedObject.healtPoints < 0){
