@@ -198,13 +198,21 @@ function setUpEvents() {
     attackStarted = true;
     console.log("Value of Var attackStarted insite function clicked: " + attackStarted);
 
-    // if (enemySelected !== undefined && characterSelected !== undefined) {
-    //   document.getElementById("message1").innerHTML = "SELECT A CHARACTER & AN ENEMY TO START THE GAME ";
-    // }
+    if (characterSelected == undefined) {
+      document.getElementById("message1").innerHTML = "SELECT  A CHARACTER & AN ENEMY TO START THE GAME ";
+      document.getElementById("message2").innerHTML = "";
+    }
+
+    if (enemySelected == undefined) {
+      document.getElementById("message1").innerHTML = "SELECT AN ENEMY TO START THE GAME ";
+      document.getElementById("message2").innerHTML = "";
+
+    }
 
 
-    if (enemySelectedObject.healtPoints && characterSelectedObject.healtPoints > -1){
+    if (enemySelectedObject.healtPoints >= 0 && characterSelectedObject.healtPoints >= 0){
       console.log( "enemy HP:" + enemySelectedObject.healtPoints + "your HP" + characterSelectedObject.healtPoints + "on click event" );
+
       attacking();
     }
 
@@ -235,9 +243,6 @@ function setUpEvents() {
 
   function combat(){
 
-    if (enemySelectedObject.healtPoints && characterSelectedObject.healtPoints > 0){
-      console.log("Fighers in combat conditions");
-    }
     if (enemySelectedObject.healtPoints < 0){
       console.log("You WIN!");
       win()
@@ -268,7 +273,7 @@ function setUpEvents() {
     $("#selectPosition1Image").attr("src", "assets/images/" + characterSelectedObject.image0 + ".jpg")
     document.getElementById("message1").innerHTML = "YOU LOST!";
     document.getElementById("message2").innerHTML = "CLICK RESTART TO CONTINUE"
-
+    restart()
   }
 
   function win(){
@@ -280,7 +285,27 @@ function setUpEvents() {
 
     enemySelected = undefined;
 
+    if(enemiesCharactersObjects.length === 0){
+
+    document.getElementById("message1").innerHTML = "GAME OVER";
+    restart()
+    document.getElementById("message2").innerHTML = "CLICK RESTART TO CONTINUE"
+    $("#attack").remove();
+}
   }
+
+function restart(){
+  $(".restartButton").on("click", function(e) {
+    var values5 = $(this).val();
+    if (characterSelectedObject.healtPoints < 0 || enemiesCharactersObjects.length === 0  ){
+      console.log( "enemy HP:" + enemySelectedObject.healtPoints + "your HP" + characterSelectedObject.healtPoints + "on click event" );
+      location.reload();
+    }
+
+  });
+
+}
+
 
 
 
