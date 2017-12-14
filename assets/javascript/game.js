@@ -9,6 +9,9 @@ function setUpEvents() {
   var fightStarted = false;
   var enemySelected;
   var enemySelectedObject;
+  var maxEnemies =3;
+  var availableCharactersObjects;
+
 
 
   // creating the objects
@@ -25,41 +28,30 @@ function setUpEvents() {
     this.image0 = image0;
     this.imageGif = imageGif;
   }
-
-  var character1 = new Character("Luke Skywalker", 100, 25, 25, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif")
-  var character2 = new Character("Yoda", 125, 50, 50, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif")
-  var character3 = new Character("Palpatine", 150, 75, 75, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif")
-  var character4 = new Character("Darth Vader", 125, 50, 50, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")
-
-  // var character1 = new Character("Luke Skywalker", 100, 25, 25, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif")
-  // var character2 = new Character("Yoda", 125, 50, 50, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif")
-  // var character3 = new Character("Palpatine", 150, 75, 75, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif")
-  // var character4 = new Character("Darth Vader", 125, 50, 50, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")
-
-
+function resetCharacters(){
+  availableCharactersObjects = [
+    new Character("Luke Skywalker", 100, 25, 25, "Human male Jedi Master", "luke100", "luke75", "luke50", "luke25", "luke0", "lukeGif"),
+    new Character("Yoda", 125, 50, 50, "Mysterious species male Jedi Master", "yoda100", "yoda75", "yoda50", "yoda25", "yoda0", "yodaGif"),
+    new Character("Palpatine", 150, 75, 75, "Human male Dark Lord of the Sith", "palpatine100", "palpatine75", "palpatine50", "palpatine25", "palpatine0", "palpatineGif"),
+    new Character("Darth Vader", 125, 50, 50, "Human male Sith Lord", "darthVader100", "darthVader75", "darthVader50", "darthVader25", "darthVader0", "darthVaderGif")];
+};
   // ends creating objects
 
   // Building the initial screen.  - Step 1
 
   function selectCharacterSetUp() {
+      resetCharacters();
+    //var availableCharactersObjects = [character1, character2, character3, character4]
+    $.each(availableCharactersObjects, function(index, character){
+      index++;
 
-    document.getElementById("selectPosition1Title").innerHTML = character1.name;
-    //$(#selectPosition1Title).html(character1.name);
-    document.getElementById("selectPosition1Image").src = "assets/images/" + character1.image100 + ".jpg";
-    document.getElementById("selectPosition1Footer").innerHTML = "HP: " + character1.healtPoints;
+           $("#selectPosition"+ index +"Title").html(character.name);
+               $("#selectPosition"+ index +"Image").attr("src","assets/images/" + character.image100 + ".jpg");
+               $("#selectPosition"+ index +"Footer").html("HP: "+ character.healtPoints);
+     });
 
-    document.getElementById("selectPosition2Title").innerHTML = character2.name;
-    document.getElementById("selectPosition2Image").src = "assets/images/" + character2.image100 + ".jpg";
-    document.getElementById("selectPosition2Footer").innerHTML = "HP: " + character2.healtPoints;
 
-    document.getElementById("selectPosition3Title").innerHTML = character3.name;
-    document.getElementById("selectPosition3Image").src = "assets/images/" + character3.image100 + ".jpg";
-    document.getElementById("selectPosition3Footer").innerHTML = "HP: " + character3.healtPoints;
 
-    document.getElementById("selectPosition4Title").innerHTML = character4.name;
-    document.getElementById("selectPosition4Image").src = "assets/images/" + character4.image100 + ".jpg";
-    document.getElementById("selectPosition4Footer").innerHTML = "HP: " + character4.healtPoints;
-    console.log("Initial value of Var gameStarted: " + gameStarted);
   } //End selectCharacterSetUp function
 
   selectCharacterSetUp()
@@ -72,7 +64,15 @@ function setUpEvents() {
     buttonAlert = parseInt(buttonAlert);
     gameStarted = true;
     console.log("Value of Var gameStarted insite function clicked: " + gameStarted);
-    initializer();
+    console.log("characterSelected: " + characterSelected);
+
+if (characterSelected === undefined){
+
+ initializer();
+
+}
+
+
 
   });
 
@@ -90,7 +90,7 @@ function setUpEvents() {
 
   function startSelectCharacter() {
     console.log("characterSelected " + characterSelected);
-    var availableCharactersObjects = [character1, character2, character3, character4]
+    //var availableCharactersObjects = [character1, character2, character3, character4]
     characterSelectedObject = availableCharactersObjects[characterSelected]
     availableCharactersObjects.splice(characterSelected, 1);
     enemiesCharactersObjects = availableCharactersObjects
@@ -122,48 +122,78 @@ function setUpEvents() {
 
   function printEnemySelected() {
     console.log(enemiesCharactersObjects);
-    var enemy1 = enemiesCharactersObjects[0]
-    var enemy2 = enemiesCharactersObjects[1]
-    var enemy3 = enemiesCharactersObjects[2]
 
-    console.log("Enemies lenght" + enemiesCharactersObjects.length);
-    // console.log("enemy1.name " + enemy1.name);
-    // console.log("enemy2.Name " + enemy2.Name);
-    // console.log("enemy3.Name" + enemy3.name);
-    var lenght = enemiesCharactersObjects.length;
-    var a
-    console.log("var lenght " + lenght);
-    a = lenght
-    console.log("log A :" + a);
+if (enemiesCharactersObjects.length< maxEnemies) {
+      var index = enemiesCharactersObjects.length +1;
 
-    if (a > 0) {
-      console.log("logging count" + a);
-      document.getElementById("attackCharacter1Title").innerHTML = enemy1.name;
-      document.getElementById("attackCharacter1Image").src = "assets/images/" + enemy1.image100 + ".jpg";
-      document.getElementById("attackCharacter1Footer").innerHTML = "HP: " + enemy1.healtPoints;
-    } else {
-      document.getElementById("attackCharacter" + 1 + "Title").innerHTML = "";
-      document.getElementById("attackCharacter" + 1 + "Image").src = "";
-      document.getElementById("attackCharacter" + 1 + "Footer").innerHTML = "";
+
+      $("#attackCharacter"+ index + "Title").remove();
+      $("#attackCharacter"+ index + "Image").remove();
+      $("#attackCharacter"+ index + "Footer").remove();
+
+}
+
+
+    $.each(enemiesCharactersObjects, function(index,enemy){
+
+      index++;
+
+      console.log("index " + index + " enemy " + enemy.name);
+            console.log("index " + index + " enemy " + enemy.image100);
+
+
+      $("#attackCharacter"+ index +"Title").html(enemy.name);
+      $("#attackCharacter"+ index + "Image").attr("src","assets/images/" + enemy.image100 + ".jpg");
+      $("#attackCharacter"+ index+ "Footer").html(enemy.healtPoints);
     }
-    if (a > 1) {
-      document.getElementById("attackCharacter2Title").innerHTML = enemy2.name;
-      document.getElementById("attackCharacter2Image").src = "assets/images/" + enemy2.image100 + ".jpg";
-      document.getElementById("attackCharacter2Footer").innerHTML = "HP: " + enemy2.healtPoints;
-    } else {
-      document.getElementById("attackCharacter" + 2 + "Title").innerHTML = "";
-      document.getElementById("attackCharacter" + 2 + "Image").src = "";
-      document.getElementById("attackCharacter" + 2 + "Footer").innerHTML = "";
-    }
-    if (a > 2) {
-      document.getElementById("attackCharacter3Title").innerHTML = enemy3.name;
-      document.getElementById("attackCharacter3Image").src = "assets/images/" + enemy3.image100 + ".jpg";
-      document.getElementById("attackCharacter3Footer").innerHTML = "HP: " + enemy3.healtPoints;
-    } else {
-      document.getElementById("attackCharacter" + 3 + "Title").innerHTML = "";
-      document.getElementById("attackCharacter" + 3 + "Image").src = "";
-      document.getElementById("attackCharacter" + 3 + "Footer").innerHTML = "";
-    }
+
+      )
+
+
+
+
+    // var enemy1 = enemiesCharactersObjects[0]
+    // var enemy2 = enemiesCharactersObjects[1]
+    // var enemy3 = enemiesCharactersObjects[2]
+
+    // console.log("Enemies lenght" + enemiesCharactersObjects.length);
+    // // console.log("enemy1.name " + enemy1.name);
+    // // console.log("enemy2.Name " + enemy2.Name);
+    // // console.log("enemy3.Name" + enemy3.name);
+    // var lenght = enemiesCharactersObjects.length;
+    // var a
+    // console.log("var lenght " + lenght);
+    // a = lenght
+    // console.log("log A :" + a);
+
+    // if (a > 0) {
+    //   console.log("logging count" + a);
+    //   //document.getElementById("attackCharacter1Title").innerHTML = enemy1.name;
+    //   document.getElementById("attackCharacter1Image").src = "assets/images/" + enemy1.image100 + ".jpg";
+    //   document.getElementById("attackCharacter1Footer").innerHTML = "HP: " + enemy1.healtPoints;
+    // } else {
+    //   //document.getElementById("attackCharacter" + 1 + "Title").innerHTML = "";
+    //   document.getElementById("attackCharacter" + 1 + "Image").src = "";
+    //   document.getElementById("attackCharacter" + 1 + "Footer").innerHTML = "";
+    // }
+    // if (a > 1) {
+    //   //document.getElementById("attackCharacter2Title").innerHTML = enemy2.name;
+    //   document.getElementById("attackCharacter2Image").src = "assets/images/" + enemy2.image100 + ".jpg";
+    //   document.getElementById("attackCharacter2Footer").innerHTML = "HP: " + enemy2.healtPoints;
+    // } else {
+    //   //document.getElementById("attackCharacter" + 2 + "Title").innerHTML = "";
+    //   document.getElementById("attackCharacter" + 2 + "Image").src = "";
+    //   document.getElementById("attackCharacter" + 2 + "Footer").innerHTML = "";
+    // }
+    // if (a > 2) {
+    //   //document.getElementById("attackCharacter3Title").innerHTML = enemy3.name;
+    //   document.getElementById("attackCharacter3Image").src = "assets/images/" + enemy3.image100 + ".jpg";
+    //   document.getElementById("attackCharacter3Footer").innerHTML = "HP: " + enemy3.healtPoints;
+    // } else {
+    //   //document.getElementById("attackCharacter" + 3 + "Title").innerHTML = "";
+    //   document.getElementById("attackCharacter" + 3 + "Image").src = "";
+    //   document.getElementById("attackCharacter" + 3 + "Footer").innerHTML = "";
+    // }
 
   } // End function printEnemySelected
 
@@ -175,7 +205,14 @@ function setUpEvents() {
     buttonAlert2 = parseInt(buttonAlert2);
     fightStarted = true;
     console.log("Value of Var fightStarted insite function clicked: " + fightStarted);
+   console.log("characterSelected value enemy click: " + characterSelected);
+   if (enemySelected === undefined && characterSelected !== undefined) {
+
+
+
     initializerCombat();
+
+   }
 
   });
 
@@ -217,10 +254,13 @@ function setUpEvents() {
       console.log("Value of Var attackStarted insite function clicked: " + attackStarted);
       attacking ();
 
+
     });
 
 function attacking (){
 
+  enemySelected = undefined;
+  console.log("characterSelected value: " + characterSelected);
 
   console.log("Your HP before attack"+ characterSelectedObject.healtPoints);
   characterSelectedObject.healtPoints = characterSelectedObject.healtPoints - enemySelectedObject.attackPower
@@ -231,6 +271,8 @@ function attacking (){
   console.log("enemy HP before Attack" + enemySelectedObject.healtPoints);
   enemySelectedObject.healtPoints = enemySelectedObject.healtPoints - characterSelectedObject.counterAttackPower
   console.log("enemy HP After Attack" + enemySelectedObject.healtPoints);
+
+//console.log("character1" + character1.healtPoints)
 
   fightMessajes()
 }
