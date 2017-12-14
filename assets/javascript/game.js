@@ -265,17 +265,17 @@ function setUpEvents() {
 
     var healtPercent2 = enemySelectedObject.healtPoints / enemySelectedObject.initialHealtPoints;
     console.log(healtPercent);
-    if(healtPercent < 0.75 && healtPercent > 0.50){
+    if(healtPercent2 < 0.75 && healtPercent > 0.50){
           console.log(healtPercent);
           $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image75 + ".jpg")
     }
 
-    if(healtPercent < 0.50 && healtPercent > 0.25){
+    if(healtPercent2 < 0.50 && healtPercent > 0.25){
           console.log(healtPercent);
           $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image50 + ".jpg")
     }
 
-    if(healtPercent < 0.25 && healtPercent >
+    if(healtPercent2 < 0.25 && healtPercent >
       0){
           console.log(healtPercent);
           $("#selectPosition4Image").attr("src", "assets/images/" + enemySelectedObject.image25 + ".jpg")
