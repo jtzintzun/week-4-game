@@ -317,8 +317,10 @@ function setUpEvents() {
 
   function win(){
 
+    charactersDefeaded.push(enemySelectedObject)
+    console.log("characters defeades"+ enemySelectedObject);
     $("#fightCharacter2Image").attr("src", "assets/images/" + enemySelectedObject.image0 + ".jpg")
-
+    printDefeadedEnemies()
     document.getElementById("message1").innerHTML = "YOU WIN!";
     document.getElementById("message2").innerHTML = "SELECT A NEW ENEMY TO CONTINUE"
 
@@ -345,6 +347,15 @@ function restart(){
 
 }
 
+
+function printDefeadedEnemies(){
+  $.each(charactersDefeaded, function(index, character) {
+    index++;
+    $("#defeadedCharacter" + index + "Title").html(character.name);
+    $("#defeadedCharacter" + index + "Image").attr("src", "assets/images/" + character.image0 + ".jpg");
+    $("#defeadedCharacter" + index + "Footer").html("HP: " + character.healtPoints);
+  });
+} //End selectCharacterSetUp function
 
 
 
